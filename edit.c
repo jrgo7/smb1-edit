@@ -80,8 +80,7 @@ int main(int argc, char **argv)
 
         if (choice != 0)
         {
-            choice--;
-            max_len = strlen(choices[choice]);
+            max_len = strlen(choices[choice-1]);
             do
             {
                 printf("\tPlease enter new text. (Max %d chars): ", max_len);
@@ -91,7 +90,7 @@ int main(int argc, char **argv)
                 if (too_long)
                     printf("\tSorry, string is too long!\n");
             } while (too_long);
-            printf("\tWriting %s to %x...\n", new, offsets[choice]);
+            printf("\tWriting %s to %x...\n", new, offsets[choice-1]);
 
             for (int i = 0; i < max_len; i++)
             {
@@ -102,7 +101,7 @@ int main(int argc, char **argv)
             }
 
             // Write custom data to output ROM
-            fseek(out_fp, offsets[choice], SEEK_SET);
+            fseek(out_fp, offsets[choice-1], SEEK_SET);
             fwrite(new, sizeof(__int8), max_len, out_fp);
         }
     }
