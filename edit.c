@@ -2,12 +2,12 @@
 This is the main text editor program.
 To compile:
     `gcc -Wall edit.c -o edit`
+TODO: Add support for Princess Toadstool's thank you message
 */
 #include <stdio.h>
 #include <string.h>
 #include "consts.h"
 #include "funcs.c"
-
 int main(int argc, char **argv)
 {
     if (argc != 3)
@@ -26,7 +26,7 @@ int main(int argc, char **argv)
         "WORLD", "TIME UP", "GAME OVER",
         // ANOTHER CASTLE
         "THANK YOU MARIO!", "THANK YOU LUIGI!",
-        "BUT OUR PRINCESS IS IN", "ANOTHER CASTLE",
+        "BUT OUR PRINCESS IS IN", "ANOTHER CASTLE!",
         // MISC
         "WELCOME TO WARP ZONE!", "@1985 NINTENDO",
         "1 PLAYER GAME", "2 PLAYER GAME",
@@ -83,7 +83,9 @@ int main(int argc, char **argv)
             max_len = strlen(choices[choice-1]);
             do
             {
-                printf("\tPlease enter new text. (Max %d chars): ", max_len);
+                printf("\tPlease enter new text. (Max %d chars)\n", max_len);
+                printf("\tDo not exceed the length of the original text.\n");
+                printf("\t%s|\n\t", choices[choice-1]);
                 gets(new);
                 actual_len = strlen(new);
                 too_long = actual_len > max_len;
